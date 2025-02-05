@@ -38,7 +38,7 @@ export default function Login() {
       setIsLoading(true);
     
       try {
-        const response = await axios.post(`${API_URL}/auth/login`, {
+        const response = await axios.post(`https://notes-application-spring.onrender.com/auth/login`, {
           username: values.email,
           password: values.password,
         }, {

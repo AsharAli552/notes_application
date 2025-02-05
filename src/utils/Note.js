@@ -1,7 +1,7 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 
-const API_URL = process.env.REACT_APP_API_URL;
+//const API_URL = process.env.REACT_APP_API_URL;
 
 // *=========> ADD NOTE
 // ^[1] show modal [title, content]
@@ -38,7 +38,7 @@ export function showAddModal({ token, updater }) {
 async function sendDataToAddNote({ title, description, token, updater }) {
   try {
     const { data } = await axios.post(
-      `${API_URL}/api/tasks/create`,
+      `https://notes-application-spring.onrender.com/api/tasks/create`,
       { title, description },
       {
         headers: {
@@ -73,7 +73,7 @@ async function sendDataToAddNote({ title, description, token, updater }) {
 export async function getAllNotes({ token, updater }) {
   try {
     const { data } = await axios.get(
-      `${API_URL}/api/tasks`,
+      `https://notes-application-spring.onrender.com/api/tasks`,
       {
         headers: {
           Authorization: `Bearer ${token}`, // Correct header format
@@ -111,7 +111,7 @@ export function showDeleteModal({ noteID, token, updater }) {
 // ^[2] send Data To Delete
 async function sendDataToDelete({ noteID, token, updater }) {
   const { data } = await axios.delete(
-    `${API_URL}/api/tasks/${noteID}`,
+    `https://notes-application-spring.onrender.com/api/tasks/${noteID}`,
     {
       headers: {
         Authorization: `Bearer ${token}`, // Correct header format
@@ -187,7 +187,7 @@ export function showUpdatemodal({
 async function sendUpdateData({ noteID, token, updater, title, description }) {
   try {
     const { data } = await axios.put(
-      `${API_URL}/api/tasks/update/${noteID}`,
+      `https://notes-application-spring.onrender.com/api/tasks/update/${noteID}`,
       { title, description },
       { headers: { Authorization: `Bearer ${token}` } }
     );
