@@ -1,0 +1,45 @@
+.notes {
+  --gap: 10px;
+  --number-of-notes: 3;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--gap);
+}
+
+.notes > * {
+  width: calc(
+    (100% - calc(var(--gap) * (var(--number-of-notes) - 1))) / var(--number-of-notes)
+  );
+}
+
+.note-body {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%; /* Ensure the note body doesn't exceed its container width */
+  width: 100%;  /* Ensure the body takes full width */
+  overflow: hidden;  /* Hide any content that overflows */
+  box-sizing: border-box; /* Include padding in the width calculation */
+  padding: 10px; /* Optional: Adjust padding */
+}
+
+.note-body h2 {
+  margin-bottom: 10px;  /* Space between title and description */
+  word-wrap: break-word;  /* Ensure long titles break into the next line */
+  overflow-wrap: break-word;  /* Ensures long words in the title break properly */
+  hyphens: auto;  /* Allow automatic hyphenation in words */
+}
+
+.note-body p {
+  overflow-x: hidden;  /* Prevent horizontal overflow */
+  overflow-y: auto;  /* Allow vertical scrolling if needed */
+  text-overflow: ellipsis;  /* Adds '...' if text overflows */
+  white-space: normal;  /* Allow wrapping of the text */
+  word-wrap: break-word;  /* Break long words in the description */
+  overflow-wrap: break-word;  /* Ensure long words break properly */
+  margin: 0;  /* Remove default margin */
+}
+
+.empty {
+  height: calc(100vh - 100px);
+}
