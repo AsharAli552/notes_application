@@ -10,6 +10,7 @@ import axios from "axios";
 
 const API_URL = process.env.REACT_APP_API_URL;
 export default function Login() {
+  console.log("API Base URL:", process.env.REACT_APP_API_URL);
   const navigate = useNavigate();
   let [isLoading, setIsLoading] = useState(false);
 
@@ -32,6 +33,8 @@ export default function Login() {
 
     validationSchema,
     onSubmit: async function (values) {
+      console.log("Login Request to:", `${API_URL}/auth/login`);
+
       setIsLoading(true);
     
       try {
@@ -55,14 +58,19 @@ export default function Login() {
           alert("Login failed: Token not found.");
         }
       } catch (error) {
-        console.error("Error logging in:", error);
-        alert("An error occurred while logging in.");
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    
-    
+        if (error.response) {
+          console.error("Server Response Data:", error.response.data);
+          console.error("Server Response Status:", error.response.status);
+          console.error("Server Response Headers:", error.response.headers);
+          alert(`Login failed: ${error.response.data?.message || "Unknown error"}`);
+        } else if (error.request) {
+          console.error("No response received:", error.request);
+          alert("No response from server. Check if the backend is running.");
+        } else {
+          console.error("Error setting up request:", error.message);
+          alert("Request error: " + error.message);
+        }
+      }}
     
     
   });

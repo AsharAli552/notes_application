@@ -36,6 +36,7 @@ export default function Register() {
   });
 
   async function sendDataToSignUp(values) {
+    console.log("Signup Request to:", `${API_URL}/auth/register`);
     try {
       const response = await axios.post(
         `${API_URL}/auth/register`, 
