@@ -5,7 +5,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
-const API_URL = process.env.REACT_APP_API_URL;
+
 
 export default function Register() {
  
@@ -39,7 +39,7 @@ export default function Register() {
     console.log("Signup Request to:", `https://notes-application-spring.onrender.com/auth/register`);
     try {
       const response = await axios.post(
-        `${API_URL}/auth/register`, 
+        `https://notes-application-spring.onrender.com/auth/register`, 
         {
           username: values.username,  // Use username as per your backend
           password: values.password,
